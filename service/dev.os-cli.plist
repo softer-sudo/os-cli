@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>dev.os-cli</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>@NODE@</string>
+    <string>@APP@/app/dist/cli.js</string>
+    <string>serve</string>
+    <string>--config</string>
+    <string>@APP@/config.json</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <!-- restart after a crash or a non-zero exit, but not after a clean SIGTERM exit (0) -->
+  <key>KeepAlive</key><dict><key>SuccessfulExit</key><false/></dict>
+  <!-- at most one (re)start per 10 s, so exit 77/78 can't spin the CPU -->
+  <key>ThrottleInterval</key><integer>10</integer>
+  <!-- SIGTERM, then SIGKILL after 10 s if graceful shutdown hangs -->
+  <key>ExitTimeOut</key><integer>10</integer>
+  <!-- files the service creates are 0600 (decimal 63 = octal 077) -->
+  <key>Umask</key><integer>63</integer>
+  <key>ProcessType</key><string>Background</string>
+  <key>StandardOutPath</key><string>@LOGS@/out.log</string>
+  <key>StandardErrorPath</key><string>@LOGS@/err.log</string>
+</dict>
+</plist>
