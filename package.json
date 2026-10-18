@@ -1,0 +1,22 @@
+{
+  "name": "os-cli",
+  "version": "0.1.0",
+  "description": "Tiny Node.js + TypeScript CLI demonstrating operating-system fundamentals: processes, IPC, file handles, services, security",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "os-cli": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc",
+    "test": "node --test --test-timeout=20000 test/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2"
+  }
+}
